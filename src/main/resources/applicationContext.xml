@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <bean id="helloSpring" class="com.itheima.HelloSpring">
+
+            <property name="userName" value="张三"></property>
+        </bean>
+<!--    构造方式注入-->
+    <bean id="user1" class="com.itheima.User1">
+        <constructor-arg name="id" value="1"></constructor-arg>
+        <constructor-arg name="username" value="zhangsan"></constructor-arg>
+        <constructor-arg name="password" value="123456"></constructor-arg>
+    </bean>
+
+<!--    set方式注入-->
+    <bean id="user2" class="com.itheima.User2">
+        <property name="id" value="2"></property>
+        <property name="username" value="lisi"></property>
+        <property name="password" value="123"></property>
+
+        <property name="user1" ref="user1"></property>
+
+    </bean>
+
+<!--    UserDao对象-->
+    <bean id="userDao" class="com.itheima.dao.Impl.UserDaoImpl"></bean>
+    <!--    UserService对象-->
+    <bean id="userService" class="com.itheima.service.Impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+</beans>
